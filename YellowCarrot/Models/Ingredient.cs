@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -9,6 +10,10 @@ namespace YellowCarrot.Models
 {
     internal class Ingredient
     {
+        // Primery key
+        [Key]
+
+        // Props
         public int IngridientId { get; set; }
         public string Name { get; set; } = null!;
         public int? Quantity { get; set; }

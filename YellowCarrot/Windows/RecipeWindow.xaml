@@ -1,0 +1,64 @@
+﻿<Window x:Class="YellowCarrot.Windows.RecipeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YellowCarrot.Windows"
+        mc:Ignorable="d"
+        Title="RecipeWindow" Height="450" Width="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Column="3"
+            Grid.Row="0"
+            Content="Recipes"
+            FontSize="50"
+            HorizontalAlignment="Center"/>
+        <ListView
+            x:Name="lvRecipes"
+            Grid.Column="3"
+            Grid.Row="2"
+            Width="200"
+            Height="250"/>
+        <Button
+            Grid.Column="1"
+            Grid.Row="3"
+            Height="50"
+            Width="100"
+            Content="Add Recipe"
+            x:Name="btnAddRecipe" Click="btnAddRecipe_Click"/>
+        <Button
+            Grid.Column="3"
+            Grid.Row="3"
+            Height="50"
+            Width="100"
+            Content="Details"
+            x:Name="btnDetails" Click="btnDetails_Click"/>
+        <Button
+            Grid.Column="4"
+            Grid.Row="3"
+            Height="50"
+            Width="100"
+            Content="Delete"
+            x:Name="btnDelete" Click="btnDelete_Click"/>
+    </Grid>
+</Window>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\dula8\source\repos\YellowCarrot\YellowCarrot\App.xaml
-11407045341
+34830707
 
-82124818740
+14955755996
 222-1736769041
-MainWindow.xaml;
+Windows\AddRecipeWindow.xaml;Windows\DetailsWindow.xaml;Windows\RecipeWindow.xaml;
 
 False
 
