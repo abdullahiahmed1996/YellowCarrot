@@ -29,6 +29,11 @@ namespace YellowCarrot.Data
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=YellowCarrotDb;Trusted_Connection=True;");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Recipe>().HasMany(i => i.Ingridients).WithOne(r => r.Recipe).OnDelete(DeleteBehavior.Cascade);
+        }
+
 
 
     }

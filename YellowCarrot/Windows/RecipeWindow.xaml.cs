@@ -25,16 +25,16 @@ namespace YellowCarrot.Windows
         {
             InitializeComponent();
 
-            using (AppDbContext context = new())
-            {
-                List<Recipe> recipes = context.Recipes.ToList();
+            //using (AppDbContext context = new())
+            //{
+            //    List<Recipe> recipes = context.Recipes.ToList();
 
-                ListViewItem item = new();
-                item.Content = recipes;
-                item.Tag = recipes;
+            //    ListViewItem item = new();
+            //    item.Content = recipes;
+            //    item.Tag = recipes;
 
-                lvRecipes.Items.Add(item);
-            }
+            //    lvRecipes.Items.Add(item);
+            //}
         }
 
         private void btnAddRecipe_Click(object sender, RoutedEventArgs e)

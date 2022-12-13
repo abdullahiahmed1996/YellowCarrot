@@ -10,7 +10,7 @@ namespace YellowCarrot.Models
     internal class Tags
     {
         [Key]
-        public int TagId { get; set; }
         public string Name { get; set; } = null!;
+        public List<Recipe> Recipes { get; set; } = new();
     }
 }

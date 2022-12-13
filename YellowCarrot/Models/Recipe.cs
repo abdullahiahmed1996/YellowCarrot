@@ -15,8 +15,7 @@ namespace YellowCarrot.Models
         public int RecipeId { get; set; }
         public string Name { get; set; } = null!;
         public List<Ingredient> Ingridients { get; set; } = new();
-        public int TagId { get; set; }
-        public Tags Tags { get; set; } = null!;
+        public List<Tags> Tags { get; set; } = new();
 
 
     }

@@ -52,9 +52,15 @@
             Content="Ingridients:"
             FontSize="20"/>
         <TextBox
-            x:Name="txtIngredienser"
+            x:Name="txtIngridients"
             Grid.Column="2"
             Grid.Row="4"
+            FontSize="15"
+            Width="150"/>
+        <ListView
+            x:Name="lvIngredients"
+            Grid.Row="4"
+            Grid.Column="3"
             FontSize="15"
             Width="150"/>
         <Label
@@ -62,10 +68,16 @@
             Grid.Row="5"
             Content="Tags:"
             FontSize="20"/>
-        <ComboBox
-            x:Name="cbTags"
+        <TextBox
+            x:Name="txtTags"
             Grid.Column="2"
             Grid.Row="5"
+            FontSize="15"
+            Width="150"/>
+        <ListView
+            x:Name="lvTags"
+            Grid.Row="5"
+            Grid.Column="3"
             FontSize="15"
             Width="150"/>
         <Button
