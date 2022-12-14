@@ -25,16 +25,16 @@ namespace YellowCarrot.Windows
         {
             InitializeComponent();
 
-            //using (AppDbContext context = new())
-            //{
-            //    List<Recipe> recipes = context.Recipes.ToList();
+            using (AppDbContext context = new())
+            {
+                List<Recipe> recipes = context.Recipes.ToList();
 
-            //    ListViewItem item = new();
-            //    item.Content = recipes;
-            //    item.Tag = recipes;
-
-            //    lvRecipes.Items.Add(item);
-            //}
+                recipes.ForEach(r => lvRecipes.Items.Add(new ListViewItem()
+                {
+                    Content = r.Name,
+                    Tag = r
+                }));
+            }
         }
 
         private void btnAddRecipe_Click(object sender, RoutedEventArgs e)
@@ -42,16 +42,26 @@ namespace YellowCarrot.Windows
             AddRecipeWindow addRecipeWindow = new ();
 
             addRecipeWindow.Show();
+
+            Close();
         }
 
         private void btnDetails_Click(object sender, RoutedEventArgs e)
         {
             DetailsWindow detailsWindow = new DetailsWindow();
             detailsWindow.Show();
+            Close();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void lvRecipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnDetails.IsEnabled = true; 
+            btnDelete.IsEnabled = true;
 
         }
     }

@@ -22,6 +22,21 @@ namespace YellowCarrot.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("RecipeTags", b =>
+                {
+                    b.Property<int>("RecipesRecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TagsName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("RecipesRecipeId", "TagsName");
+
+                    b.HasIndex("TagsName");
+
+                    b.ToTable("RecipeTags");
+                });
+
             modelBuilder.Entity("YellowCarrot.Models.Ingredient", b =>
                 {
                     b.Property<int>("IngridientId")
@@ -59,34 +74,34 @@ namespace YellowCarrot.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagsTagId")
-                        .HasColumnType("int");
-
                     b.HasKey("RecipeId");
-
-                    b.HasIndex("TagsTagId");
 
                     b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("YellowCarrot.Models.Tags", b =>
                 {
-                    b.Property<int>("TagId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagId"));
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("TagId");
+                    b.HasKey("Name");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("RecipeTags", b =>
+                {
+                    b.HasOne("YellowCarrot.Models.Recipe", null)
+                        .WithMany()
+                        .HasForeignKey("RecipesRecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YellowCarrot.Models.Tags", null)
+                        .WithMany()
+                        .HasForeignKey("TagsName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("YellowCarrot.Models.Ingredient", b =>
@@ -98,17 +113,6 @@ namespace YellowCarrot.Migrations
                         .IsRequired();
 
                     b.Navigation("Recipe");
-                });
-
-            modelBuilder.Entity("YellowCarrot.Models.Recipe", b =>
-                {
-                    b.HasOne("YellowCarrot.Models.Tags", "Tags")
-                        .WithMany()
-                        .HasForeignKey("TagsTagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("YellowCarrot.Models.Recipe", b =>

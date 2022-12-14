@@ -26,23 +26,33 @@ namespace YellowCarrot.Windows
         {
             InitializeComponent();
 
-            using (AppDbContext context = new())
-            {
-
-            }
         }
 
         private void btnSaveRecipe_Click(object sender, RoutedEventArgs e)
         {
-            Recipe newRecipe = new()
-            {
-                Name = txtName.Text,
-                Ingridients = IngrediensList(),
-                Tags = TagsList()
-            };
-            using (AppDbContext context = new())
+            using(AppDbContext context = new())
             {
                 UnitOfWork uow = new(context);
+                
+                Recipe newRecipe = new()
+                {
+                    Name = txtName.Text,
+                    Ingridients = new List<Ingredient>()
+                    {
+                        new Ingredient()
+                        {
+                            Name = txtIngridients.Text,
+                        },
+                    },
+                    Tags = new List<Tags>()
+                    {
+                        new Tags()
+                        {
+                            Name = txtTags.Text
+                        }
+                    }
+                };
+
                 uow.RecipeRepo.NewRecipe(newRecipe);
                 uow.SaveChanges();
             }
@@ -74,6 +84,33 @@ namespace YellowCarrot.Windows
                 tagsList.Add(tags);
             }
             return tagsList;
+        }
+
+        private void btnAddIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            ListViewItem lvOfIngredient = new();
+            lvOfIngredient.Content =  $"{txtIngridients.Text} / {txtQuantity.Text}";
+            lvOfIngredient.Tag = new Ingredient()
+            {
+                Name = txtIngridients.Text,
+                //Quantity = txtQuantity.Text
+            };
+
+            lvIngredients.Items.Add(lvOfIngredient);
+            
+        }
+
+        private void btnAddTag_Click(object sender, RoutedEventArgs e)
+        {
+            ListViewItem lvOfTags = new();
+            lvOfTags.Content = txtTags.Text;
+            lvOfTags.Tag = new Tags()
+            {
+                Name = txtTags.Text,
+            };
+            lvTags.Items.Add(lvOfTags);
+        
+           
         }
     }
 }

@@ -8,7 +8,7 @@
         Title="DetailsWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
@@ -19,7 +19,7 @@
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -28,5 +28,55 @@
             <RowDefinition Height="auto"/>
 
         </Grid.RowDefinitions>
+        <Label
+            Grid.Column="1"
+            Grid.Row="2"
+            VerticalContentAlignment="Center"
+            Content="Name:"
+            FontSize="20"/>
+        <TextBox
+            x:Name="txtName"
+            Grid.Column="2"
+            Grid.Row="2"
+            VerticalContentAlignment="Center"
+            FontSize="15"
+            Width="150" />
+        <Label
+            Grid.Column="1"
+            Grid.Row="3"
+            VerticalContentAlignment="Top"
+            Content="Ingridients:"
+            FontSize="20"/>
+        <ListView
+            x:Name="lvIngridients"
+            Grid.Column="2"
+            Grid.Row="3"
+            VerticalContentAlignment="Center"
+            FontSize="15"
+            Width="150"
+            Height="100" SelectionChanged="lvIngridients_SelectionChanged"/>
+        <Button
+            Grid.Column="3"
+            Grid.Row="4"
+            Height="25"
+            Width="100"
+            Content="Save"/>
+        <Button
+            Grid.Column="2"
+            Grid.Row="5"
+            Height="25"
+            Width="100"
+            Content="Unlock"
+            x:Name="btnUnlock" Click="btnUnlock_Click"
+            />
+        <Button
+            Grid.Column="3"
+            Grid.Row="3"
+            Height="25"
+            Width="120"
+            Content="Remove Ingredient" 
+            x:Name="btnDeleteIngredient"
+            IsEnabled="False" Click="btnDeleteIngredient_Click"/>
+
     </Grid>
 </Window>

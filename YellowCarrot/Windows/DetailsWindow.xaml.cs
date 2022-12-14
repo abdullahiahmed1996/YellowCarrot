@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using YellowCarrot.Data;
+using YellowCarrot.Models;
 
 namespace YellowCarrot.Windows
 {
@@ -22,6 +24,36 @@ namespace YellowCarrot.Windows
         public DetailsWindow()
         {
             InitializeComponent();
+            
+            using (AppDbContext context = new())
+            {
+
+                List<Ingredient> ingredients = context.Ingredients.ToList();
+                foreach (Ingredient ingre in ingredients)
+                {
+                    ListViewItem item = new();
+                    item.Content = $"{ingre.Name}";
+                    item.Tag = ingre;
+
+                    lvIngridients.Items.Add(item);
+                }
+            }
+
+        }
+
+        private void lvIngridients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnDeleteIngredient.IsEnabled = true;
+        }
+
+        private void btnDeleteIngredient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUnlock_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
