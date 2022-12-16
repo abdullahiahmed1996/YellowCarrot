@@ -19,12 +19,28 @@ namespace YellowCarrot.Repositories
 
         public List<Recipe> AllRecipes()
         {
-            return _context.Recipes.Include(r => r.Tags).ToList();
+            return _context.Recipes.Include(r => r.Ingridients).Include(r => r.Tags).ToList();
         }
 
         public void NewRecipe(Recipe newRecipe)
         {
             _context.Recipes.Add(newRecipe);
+        }
+
+        public void DeleteRecipe(Recipe selectedRecipe)
+        {
+            _context.Recipes.Remove(selectedRecipe);
+        }
+
+        public void UpdateRecipe(Recipe recipeToUpdate)
+        {
+            _context.Recipes.Update(recipeToUpdate);
+        }
+
+        public  Recipe? GetRecipeId(int id)
+        {
+
+            return _context.Recipes.FirstOrDefault(r => r.RecipeId == id);
         }
     }
 }

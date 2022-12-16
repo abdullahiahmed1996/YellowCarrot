@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace YellowCarrot.Models
 {
-    internal class Tags
+    public class Tags
     {
+        // primary key
         [Key]
+        [MaxLength(50)]
         public string Name { get; set; } = null!;
         public List<Recipe> Recipes { get; set; } = new();
     }

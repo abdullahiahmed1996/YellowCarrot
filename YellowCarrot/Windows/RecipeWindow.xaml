@@ -12,6 +12,8 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="100"/>
 
             <ColumnDefinition Width="25"/>
@@ -19,6 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="25"/>
 
@@ -40,7 +43,7 @@
             Height="50"
             Width="100"
             Grid.Column="1"
-            Grid.Row="2"
+            Grid.Row="3"
             Content="Add recipe"
             x:Name="btnAddRecipe" 
             Click="btnAddRecipe_Click">
@@ -48,7 +51,7 @@
         <Button
             Height="50"
             Grid.Column="2"
-            Grid.Row="2"
+            Grid.Row="3"
             Width="100"
             Content="Details"
             x:Name="btnDetails" 
@@ -57,8 +60,8 @@
         <Button
             Height="50"
             Width="100"
-            Grid.Column="3"
-            Grid.Row="2"       
+            Grid.Column="4"
+            Grid.Row="3"       
             Content="Delete"
             IsEnabled="False"
             x:Name="btnDelete" Click="btnDelete_Click"/>

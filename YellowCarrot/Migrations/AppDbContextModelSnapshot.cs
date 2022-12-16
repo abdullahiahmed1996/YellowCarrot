@@ -28,7 +28,7 @@ namespace YellowCarrot.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TagsName")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("RecipesRecipeId", "TagsName");
 
@@ -47,12 +47,14 @@ namespace YellowCarrot.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("Quantity")
-                        .HasColumnType("int");
+                    b.Property<string>("Quantity")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int?>("RecipeId")
                         .HasColumnType("int");
 
                     b.HasKey("IngridientId");
@@ -60,6 +62,105 @@ namespace YellowCarrot.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("Ingredients");
+
+                    b.HasData(
+                        new
+                        {
+                            IngridientId = 1,
+                            Name = "Lasagna noodles",
+                            Quantity = "9",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 2,
+                            Name = "Italian sausage",
+                            Quantity = "450 g",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 3,
+                            Name = "Groud beef",
+                            Quantity = "340 g",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 4,
+                            Name = "Onion",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 5,
+                            Name = "Garlic",
+                            Quantity = "3 cloves",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 6,
+                            Name = "Crushed tomatoes",
+                            Quantity = "2 can",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 7,
+                            Name = "Tomatoe paste",
+                            Quantity = "2 cans",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 8,
+                            Name = "Parsley",
+                            Quantity = "300 g",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 9,
+                            Name = "Basil",
+                            Quantity = "2 teaspoons",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 10,
+                            Name = "Salt",
+                            Quantity = "300 g",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 11,
+                            Name = "Egg",
+                            Quantity = "1 lasge",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 12,
+                            Name = "Ricotta cheese",
+                            Quantity = "1 carton",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 13,
+                            Name = "Mozzarella cheese",
+                            Quantity = "4 cups",
+                            RecipeId = 1
+                        },
+                        new
+                        {
+                            IngridientId = 14,
+                            Name = "Parmesan cheese",
+                            Quantity = "300 g",
+                            RecipeId = 1
+                        });
                 });
 
             modelBuilder.Entity("YellowCarrot.Models.Recipe", b =>
@@ -72,21 +173,36 @@ namespace YellowCarrot.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("RecipeId");
 
                     b.ToTable("Recipes");
+
+                    b.HasData(
+                        new
+                        {
+                            RecipeId = 1,
+                            Name = "Lasagna"
+                        });
                 });
 
             modelBuilder.Entity("YellowCarrot.Models.Tags", b =>
                 {
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Name");
 
                     b.ToTable("Tags");
+
+                    b.HasData(
+                        new
+                        {
+                            Name = "Italian"
+                        });
                 });
 
             modelBuilder.Entity("RecipeTags", b =>
@@ -109,8 +225,7 @@ namespace YellowCarrot.Migrations
                     b.HasOne("YellowCarrot.Models.Recipe", "Recipe")
                         .WithMany("Ingridients")
                         .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Recipe");
                 });

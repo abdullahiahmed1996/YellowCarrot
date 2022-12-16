@@ -19,6 +19,22 @@ namespace YellowCarrot.Repositories
         public void CreateNewIngredien(Ingredient newIngredients)
         {
             _context.Ingredients.Add(newIngredients);
+            
+        }
+
+        public Ingredient? GetIngredient(int id)
+        {
+            return _context.Ingredients.FirstOrDefault(i => i.IngridientId == id);
+        }
+
+        public void DeleteIngredient(Ingredient ingredientToRemove)
+        {
+            _context.Ingredients.Remove(ingredientToRemove);
+        }
+
+        public List<Ingredient>? GetIngredientsList()
+        {
+            return _context.Ingredients.ToList();
         }
     }
 }

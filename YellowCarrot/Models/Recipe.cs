@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 
 namespace YellowCarrot.Models
 {
-    internal class Recipe
+    public class Recipe
     {
+        // primary key
         [Key]
+
+        // props
         public int RecipeId { get; set; }
+        [MaxLength(50)]
         public string Name { get; set; } = null!;
         public List<Ingredient> Ingridients { get; set; } = new();
         public List<Tags> Tags { get; set; } = new();

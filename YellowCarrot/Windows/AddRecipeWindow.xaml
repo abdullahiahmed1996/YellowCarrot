@@ -29,14 +29,14 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
 
         </Grid.RowDefinitions>
         
         <Label
-            Grid.Column="3"
+            Grid.Column="4"
             Grid.Row="1"
             Content="Add recipe"
             FontSize="50"
@@ -94,20 +94,6 @@
             VerticalContentAlignment="Center"
             FontSize="15"
             Width="150"/>
-        <!--<Button
-            x:Name="btnQuantity"
-            Grid.Column="6"
-            Grid.Row="3"
-            Height="35"
-            Width="120"
-            Content="Add quantity" Click="btnQuantity_Click"/>-->
-        <!--<ListView
-            x:Name="lvQuantity"
-            Grid.Row="4"
-            Grid.Column="6"
-            FontSize="15"
-            Width="150"
-            Height="100"/>-->
 
         <Label
             Grid.Column="7"
@@ -138,10 +124,18 @@
         <Button
             x:Name="btnSaveRecipe"
             Grid.Column="3"
-            Grid.Row="6"
+            Grid.Row="7"
             Height="35"
             Width="120"
             Content="Save recipe"
             FontSize="15" Click="btnSaveRecipe_Click"/>
+        <Button
+            x:Name="btnCancel"
+            Grid.Column="8"
+            Grid.Row="7"
+            Height="35"
+            Width="120"
+            Content="Cancel" Click="btnCancel_Click"
+            />
     </Grid>
 </Window>

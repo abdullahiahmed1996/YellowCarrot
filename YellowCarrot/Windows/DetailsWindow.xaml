@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YellowCarrot.Windows"
         mc:Ignorable="d"
-        Title="DetailsWindow" Height="450" Width="800">
+        Title="DetailsWindow" Height="450" Width="850">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="110"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
 
@@ -21,62 +22,145 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="auto"/>
 
         </Grid.RowDefinitions>
         <Label
+            Grid.Row="1"
+            Grid.Column="3"
+            Content="Recipe Details"
+            FontSize="50"
+            Grid.ColumnSpan="2"/>
+        <Label
             Grid.Column="1"
-            Grid.Row="2"
-            VerticalContentAlignment="Center"
+            Grid.Row="3"
+            VerticalContentAlignment="Top"
             Content="Name:"
             FontSize="20"/>
         <TextBox
             x:Name="txtName"
             Grid.Column="2"
-            Grid.Row="2"
+            Grid.Row="3"
             VerticalContentAlignment="Center"
-            FontSize="15"
-            Width="150" />
+            FontSize="20"
+            Width="150"
+            Height="35"
+            VerticalAlignment="Top"
+            IsEnabled="False"/>
         <Label
-            Grid.Column="1"
+            Grid.Column="3"
             Grid.Row="3"
             VerticalContentAlignment="Top"
             Content="Ingridients:"
             FontSize="20"/>
         <ListView
             x:Name="lvIngridients"
-            Grid.Column="2"
+            Grid.Column="4"
             Grid.Row="3"
-            VerticalContentAlignment="Center"
+            VerticalContentAlignment="Top"
             FontSize="15"
             Width="150"
-            Height="100" SelectionChanged="lvIngridients_SelectionChanged"/>
+            Height="100" 
+            SelectionChanged="lvIngridients_SelectionChanged"
+            IsEnabled="False"/>
         <Button
+            x:Name="btnSave"
             Grid.Column="3"
-            Grid.Row="4"
+            Grid.Row="6"
             Height="25"
             Width="100"
-            Content="Save"/>
+            Content="Save" Click="btnSave_Click" />
         <Button
             Grid.Column="2"
-            Grid.Row="5"
+            Grid.Row="6"
             Height="25"
             Width="100"
             Content="Unlock"
             x:Name="btnUnlock" Click="btnUnlock_Click"
             />
         <Button
-            Grid.Column="3"
-            Grid.Row="3"
+            Grid.Column="4"
+            Grid.Row="6"
             Height="25"
             Width="120"
             Content="Remove Ingredient" 
             x:Name="btnDeleteIngredient"
             IsEnabled="False" Click="btnDeleteIngredient_Click"/>
-
+        <Label
+            Grid.Column="6"
+            Grid.Row="3"
+            FontSize="20"
+            Content="Tags:"
+            VerticalContentAlignment="Top"/>
+        <ListView
+            x:Name="txtTags"
+            Grid.Column="7"
+            Grid.Row="3"
+            VerticalContentAlignment="Top"
+            FontSize="15"
+            Width="150"
+            Height="35" 
+            VerticalAlignment="Top"
+            IsEnabled="False"/>
+        <Label
+            Grid.Column="1"
+            Grid.Row="7"
+            VerticalContentAlignment="Top"
+            Content="New name:"
+            FontSize="20"
+            />
+        <TextBox
+            x:Name="txtnewRecipeName"
+            Grid.Column="2"
+            Grid.Row="7"
+            VerticalContentAlignment="Center"
+            FontSize="20"
+            Width="150"
+            Height="35"
+            VerticalAlignment="Top"
+            IsEnabled="False"/>
+        <Button
+            x:Name="btnNewRecipeName"
+            Grid.Column="2"
+            Grid.Row="8"
+            Height="25"
+            Width="120"
+            Content="Change recipe name"
+            IsEnabled="False" Click="btnNewRecipeName_Click"/>
+        <Label
+            Grid.Column="3"
+            Grid.Row="7"
+            Content="New ingredient:"
+            FontSize="20"
+            />
+        <TextBox
+            Grid.Column="4"
+            Grid.Row="7"
+            Height="100"
+            FontSize="20"
+            Name="txtNewIngredient"
+            IsEnabled="False"/>
+        <Button
+            x:Name="btnAddNewIngredient"
+            Grid.Column="4"
+            Grid.Row="8"
+            Height="25"
+            Width="120"
+            Content="Add new ingredient" Click="btnAddNewIngredient_Click"
+            IsEnabled="False"/>
+        <Button
+            x:Name="btnExit"
+            Grid.Column="8"
+            Grid.Row="8"
+            Height="25"
+            Width="100"
+            Content="Exit" Click="btnExit_Click"/>
     </Grid>
 </Window>

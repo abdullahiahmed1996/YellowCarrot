@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Azure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,38 +30,32 @@ namespace YellowCarrot.Windows
 
         }
 
+        // function for the save button
         private void btnSaveRecipe_Click(object sender, RoutedEventArgs e)
         {
-            using(AppDbContext context = new())
+            using (AppDbContext context = new())
             {
                 UnitOfWork uow = new(context);
                 
-                Recipe newRecipe = new()
+                Recipe nRecipe = new()
                 {
                     Name = txtName.Text,
-                    Ingridients = new List<Ingredient>()
-                    {
-                        new Ingredient()
-                        {
-                            Name = txtIngridients.Text,
-                        },
-                    },
-                    Tags = new List<Tags>()
-                    {
-                        new Tags()
-                        {
-                            Name = txtTags.Text
-                        }
-                    }
+
+                    Ingridients = IngrediensList(),
+                    
+                    Tags = TagsList(),
                 };
 
-                uow.RecipeRepo.NewRecipe(newRecipe);
+                uow.RecipeRepo.NewRecipe(nRecipe);
+
+
                 uow.SaveChanges();
             }
-            
-            Close();
+
+              UpdateUi();
         }
 
+        // List for ingedients
         private List<Ingredient> IngrediensList()
         {
             List<Ingredient> ingredientsList = new();
@@ -73,6 +69,7 @@ namespace YellowCarrot.Windows
             return ingredientsList;
         }
 
+        // Llist of the tags
         private List<Tags> TagsList()
         {
             List<Tags> tagsList = new();
@@ -86,20 +83,24 @@ namespace YellowCarrot.Windows
             return tagsList;
         }
 
+        // add ingerdient 
         private void btnAddIngredient_Click(object sender, RoutedEventArgs e)
         {
             ListViewItem lvOfIngredient = new();
-            lvOfIngredient.Content =  $"{txtIngridients.Text} / {txtQuantity.Text}";
+            lvOfIngredient.Content = $"{txtIngridients.Text} / {txtQuantity.Text}";
             lvOfIngredient.Tag = new Ingredient()
             {
                 Name = txtIngridients.Text,
-                //Quantity = txtQuantity.Text
+                Quantity = txtQuantity.Text
             };
 
             lvIngredients.Items.Add(lvOfIngredient);
-            
-        }
 
+            txtIngridients.Clear();
+            txtQuantity.Clear();
+
+        }
+        // add tag
         private void btnAddTag_Click(object sender, RoutedEventArgs e)
         {
             ListViewItem lvOfTags = new();
@@ -109,8 +110,30 @@ namespace YellowCarrot.Windows
                 Name = txtTags.Text,
             };
             lvTags.Items.Add(lvOfTags);
+            txtTags.Clear();
         
            
+        }
+
+        // Cancel button that takes you to the recipe window
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            RecipeWindow recipeWindow = new();
+            recipeWindow.Show();
+
+            Close();
+        }
+
+        // update ui method that clears all the txtblocks and listviews
+        private void UpdateUi()
+        {
+            txtName.Clear();
+            txtIngridients.Clear();
+            txtTags.Clear();
+            txtQuantity.Clear();
+            lvIngredients.Items.Clear();
+            lvTags.Items.Clear();
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Azure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,16 @@ namespace YellowCarrot.Repositories
         public void CeateTags(Tags newTags)
         {
             _context.Tags.Add(newTags);
+        }
+
+        public Tags? GetTag(string name)
+        {
+            return _context.Tags.FirstOrDefault(t => t.Name == name);
+        }
+
+        public List<Tags>? GetTags()
+        {
+            return _context.Tags.ToList();
         }
     }
 }
